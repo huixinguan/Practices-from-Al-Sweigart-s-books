@@ -1,0 +1,21 @@
+#Caesar Cipher Hacker
+
+import pyperclip, string
+SYMBOLS = string.ascii_letters + '0123456789 `~!@#$%^&*()-_=+[]{};:\'\",.<>/?\|'
+message = input("Enter the message to hack: ")
+
+for key in range(len(SYMBOLS)):
+    translate = ''
+    for symbol in message:
+        if symbol in SYMBOLS:
+            symbolIndex = SYMBOLS.find(symbol)
+            translateIndex = symbolIndex - key
+            if translateIndex>=len(SYMBOLS):
+                translateIndex -=len(SYMBOLS)
+            elif translateIndex<0:
+                translateIndex+=len(SYMBOLS)
+            translate+=SYMBOLS[translateIndex]
+        else:
+            translate+=symbol
+    print('Key #%s: %s'%(key, translate))
+
